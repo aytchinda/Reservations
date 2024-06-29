@@ -12,10 +12,10 @@
     <title>One Music - Modern Music HTML5 Template</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
 
 </head>
 
@@ -40,15 +40,14 @@
             <!-- Single Hero Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-1.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url('{{ asset('img/bg-img/bg-1.jpg') }}');"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span>
-                                </h2>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span></h2>
                                 <a data-animation="fadeInUp" data-delay="500ms" href="#"
                                     class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
                             </div>
@@ -58,43 +57,12 @@
             </div>
 
             <!-- Single Hero Slide -->
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-2.jpg);"></div>
-                <!-- Slide Content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib
-                                        Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#"
-                                    class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+          
+    
     </section>
     <!-- ##### Hero Area End ##### -->
 
-    <!-- ##### Latest Albums Area Start ##### -->
-
-    <!-- ##### Latest Albums Area End ##### -->
-
-    <!-- ##### Buy Now Area Start ##### -->
-
-    <!-- ##### Buy Now Area End ##### -->
-
-    <!-- ##### Featured Artist Area Start ##### -->
-
-    <!-- ##### Featured Artist Area End ##### -->
-
-    <!-- ##### Miscellaneous Area Start ##### -->
-
-    <!-- ##### Miscellaneous Area End ##### -->
+    @yield('content')
 
     <!-- ##### Contact Area Start ##### -->
     @include('home.contact')
@@ -102,19 +70,19 @@
 
     <!-- ##### Footer Area Start ##### -->
     @include('home.footer')
-    <!-- ##### Footer Area Start ##### -->
+    <!-- ##### Footer Area End ##### -->
 
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="{{ asset('js/jquery/jquery-2.2.4.min.js') }}"></script>
     <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="{{ asset('js/bootstrap/popper.min.js') }}"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
     <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
+    <script src="{{ asset('js/plugins/plugins.js') }}"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="{{ asset('js/active.js') }}"></script>
 </body>
 
 </html>

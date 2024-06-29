@@ -1,13 +1,19 @@
 <?php
 
+use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
+
 Route::get('/',[HomeController::class,'homepage']);
 // Page Home pour les utilisateurs authentifiés
 Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home');
+
+//Route Artist
+Route::get('/artist', [ArtistController::class, 'index'])->name('artist.index');
+Route::get('/artist/{id}', [ArtistController::class, 'show'])  ->where('id', '[0-9]+')->name('artist.show');
 
 
 // Route::get('/dashboard', function () {
