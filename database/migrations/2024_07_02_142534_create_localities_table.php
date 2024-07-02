@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('localities', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('postal_code', 5);
         });
     }
 
