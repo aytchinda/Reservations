@@ -21,8 +21,8 @@ class LocalitySeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $localities = [
-            ['postal_code' => '1170'],
             ['postal_code' => '1000'],
+            ['postal_code' => '1170'],
             // Ajoutez d'autres localités si nécessaire
         ];
 

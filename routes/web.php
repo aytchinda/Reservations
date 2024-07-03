@@ -36,6 +36,11 @@ Route::get('/role', [RoleController::class, 'index'])->name('role_index');
 Route::get('/role/{id}', [RoleController::class, 'show'])
 		->where('id', '[0-9]+')->name('role_show');
 
+Route::get('/locality', [LocalityController::class, 'index'])->name('locality_index');
+Route::get('/locality/{id}', [LocalityController::class, 'show'])
+->where('id', '[0-9]+')->name('locality_show');
+
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
