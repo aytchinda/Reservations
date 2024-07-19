@@ -9,7 +9,7 @@ use App\Models\Show;
 class Location extends Model
 {
     use HasFactory;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -38,13 +38,13 @@ class Location extends Model
      * @var bool
      */
     public $timestamps = false;
-    
+
     /**
      * Get the locality of the location
      */
     public function locality()
     {
-        return $this->belongsTo('App\Locality');
+        return $this->belongsTo('App\Models\Locality');
     }
 
     /**
