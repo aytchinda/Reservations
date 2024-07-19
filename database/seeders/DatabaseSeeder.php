@@ -4,6 +4,14 @@ namespace Database\Seeders;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\ArtistSeeder;
+use Database\Seeders\LocalitySeeder;
+use Database\Seeders\LocationSeeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\ShowSeeder;
+use Database\Seeders\RepresentationSeeder;
+use Database\Seeders\TypeSeeder;
+use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +30,9 @@ class DatabaseSeeder extends Seeder
             LocalitySeeder::class,
             RoleSeeder::class,
             LocationSeeder::class,
+            RepresentationSeeder::class,
             ShowSeeder::class,
+
         ]);
 
     }
