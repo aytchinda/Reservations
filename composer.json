@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.2",
         "doctrine/dbal": "^4.0",
+        "jeroennoten/laravel-adminlte": "^3.13",
         "laravel/breeze": "^2.1",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",

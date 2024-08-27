@@ -1,4 +1,4 @@
-@extends('home.homepage')
+@extends('adminlte::page')
 
 @section('content')
     <h2>Ajouter un artiste</h2>
