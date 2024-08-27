@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('price',10,2)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
-            
+
             $table->foreign('location_id')->references('id')->on('locations')
                     ->onDelete('restrict')->onUpdate('cascade');
         });
