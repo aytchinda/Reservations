@@ -35,12 +35,12 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Hero Area Start ##### -->
-    <section class="hero-area">
+    <section class="hero-area" style="height: 50vh; position: relative; overflow: hidden;">
         <div class="hero-slides owl-carousel">
             <!-- Single Hero Slide -->
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
+            <div class="single-hero-slide d-flex align-items-center justify-content-center" style="height: 100%;">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url('{{ asset('img/bg-img/bg-1.jpg') }}');"></div>
+                <div class="slide-img bg-img" style="background-image: url('{{ asset('img/bg-img/bg-1.jpg') }}'); height: 100%; background-size: cover; background-position: center;"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
@@ -55,11 +55,9 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Single Hero Slide -->
-          
-    
+        </div>
     </section>
+
     <!-- ##### Hero Area End ##### -->
 
     @yield('content')

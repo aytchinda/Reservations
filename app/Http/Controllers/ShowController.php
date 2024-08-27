@@ -14,9 +14,9 @@ class ShowController extends Controller
     {
         $shows = Show::all();
 
-        return view('show.index',[
-            'shows'=> $shows,
-            'resource'=>'spectacles',
+        return view('show.index', [
+            'shows' => $shows,
+            'resource' => 'spectacles',
         ]);
 
     }
@@ -40,12 +40,21 @@ class ShowController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show($id)
     {
         $show = Show::find($id);
+        //Récupérer les artistes du spectacle et les grouper par type
+        $collaborateurs = [];
 
-        return view('show.show',[
-            'show'=>$show
+        foreach ($show->artistTypes as $at) {
+            $collaborateurs[$at->type->type][] = $at->artist;
+        }
+
+
+        return view('show.show', [
+            'show' => $show,
+            'collaborateurs' => $collaborateurs,
+
         ]);
     }
 
