@@ -63,6 +63,9 @@ Route::get('/representation/{id}', [RepresentationController::class, 'show'])
 ->where('id', '[0-9]+')->name('representation_show');
 
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 
 // Route::get('/dashboard', function () {
