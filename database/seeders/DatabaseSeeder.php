@@ -37,6 +37,8 @@ class DatabaseSeeder extends Seeder
             ArtistTypeSeeder::class,
             ArtistTypeShowSeeder::class,
             RoleUserSeeder::class,  // Ajoutez cette ligne
+            UserRepresentationSeeder::class, // Appeler le seeder pour la table pivot
+
 
 
 
