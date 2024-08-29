@@ -110,6 +110,8 @@ class ArtistController extends Controller
             'artist' => $artist,
         ]);
 
+        
+
     }
 
     /**
@@ -120,7 +122,7 @@ class ArtistController extends Controller
         if (!Gate::allows('create-artist')) {
             abort(403);
         }
-        
+
         Artist::destroy($id);
 
         return redirect()->route('artist.index');
