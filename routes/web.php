@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,'homepage']);
 // Page Home pour les utilisateurs authentifiés
 Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home');
+Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home.homepage');
 
 //Route Artist
 Route::get('/artist', [ArtistController::class, 'index'])->name('artist.index');
