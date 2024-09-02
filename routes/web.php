@@ -6,11 +6,13 @@ use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RepresentationController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
 
 // Route vers la page d'accueil
 Route::get('/', [HomeController::class, 'homepage']);
@@ -65,6 +67,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::get('/reservation/{reservation}', [ReservationController::class, 'show'])->name('reservation.show');
+    Route::get('/reservation/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
+    Route::put('/reservation/{reservation}', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::post('/reservation/book', [ReservationController::class, 'book'])->name('reservation.book');
+});
+
+
+
 
 // Inclure les routes d'authentification
 require __DIR__.'/auth.php';

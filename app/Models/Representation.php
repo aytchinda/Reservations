@@ -49,9 +49,9 @@ class Representation extends Model
     {
         return $this->belongsTo(Show::class);
     }
-    
-    public function User()
-    {
-        return $this->belongsTo(User::class);
-    }
+
+    public function users()
+{
+    return $this->belongsToMany(User::class, 'reservations')->withPivot('seats')->withTimestamps();
+}
 }

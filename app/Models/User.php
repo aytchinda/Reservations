@@ -52,7 +52,8 @@ class User extends Authenticatable
      }
      public function representations()
      {
-         return $this->belongsToMany(Representation::class);
+         return $this->belongsToMany(Representation::class, 'reservations')->withPivot('seats')->withTimestamps();
      }
+
 }
 
