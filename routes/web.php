@@ -68,16 +68,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::get('/reservation/create', [ReservationController::class, 'create'])->name('reservation.create');
     Route::get('/reservation/{reservation}', [ReservationController::class, 'show'])->name('reservation.show');
     Route::get('/reservation/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
     Route::put('/reservation/{reservation}', [ReservationController::class, 'update'])->name('reservation.update');
     Route::post('/reservation/book', [ReservationController::class, 'book'])->name('reservation.book');
+    Route::delete('/reservation/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
 });
 
 
 
 
+
+
 // Inclure les routes d'authentification
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
