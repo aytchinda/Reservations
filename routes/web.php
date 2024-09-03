@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Route vers la page d'accueil
-Route::get('/', [HomeController::class, 'homepage']);
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 // Page Home pour les utilisateurs authentifiés
 Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home');

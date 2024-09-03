@@ -11,7 +11,8 @@
             <tr>
                 <th>ID</th>
                 <th>Nom de l'Utilisateur</th>
-                <th>Représentation</th>
+                <th>Spectacle</th>
+                <th>Prix</th>
                 <th>Nombre de Places</th>
                 <th>Actions</th>
             </tr>
@@ -23,9 +24,16 @@
                     <td>{{ $reservation->user->firstname }} {{ $reservation->user->lastname }}</td>
                     <td>
                         @if ($reservation->representation && $reservation->representation->show)
-                            {{ $reservation->representation->show->title }} - {{ $reservation->representation->when }}
+                            {{ $reservation->representation->show->title }}
                         @else
-                            Représentation non disponible
+                            Spectacle non disponible
+                        @endif
+                    </td>
+                    <td>
+                        @if ($reservation->representation && $reservation->representation->show)
+                            {{ $reservation->representation->show->price }} €
+                        @else
+                            Prix non disponible
                         @endif
                     </td>
                     <td>{{ $reservation->seats }}</td>

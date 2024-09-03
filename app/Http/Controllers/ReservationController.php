@@ -15,8 +15,10 @@ class ReservationController extends Controller
     {
         $this->authorize('viewAny', Reservation::class);
 
-        $reservations = Reservation::with('representation.show')->get();
-
+        $user = auth()->user();
+        $reservations = Reservation::with('representation.show')
+                        ->where('user_id', $user->id) // Filtrer par utilisateur connecté
+                        ->get();
         // dd($reservations); // Utilisez cette ligne pour déboguer
 
         return view('reservation.index', compact('reservations'));
@@ -54,12 +56,22 @@ class ReservationController extends Controller
 
 
 
-    public function show(Reservation $reservation)
+    public function show($id)
     {
-        $this->authorize('view', $reservation);
-        $reservation->load('representation.show');
-        return view('reservation.show', compact('reservation'));
+        // Trouver la réservation associée
+        $reservation = Reservation::with('representation.show')->findOrFail($id);
+
+        // Charger l'utilisateur connecté (si nécessaire)
+        $user = auth()->user();
+
+        // Passer les données à la vue de détails
+        return view('reservation.show', [
+            'representation' => $reservation->representation,
+            'user' => $user
+        ]);
     }
+
+
 
     public function edit(Reservation $reservation)
     {
