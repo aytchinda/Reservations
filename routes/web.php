@@ -4,6 +4,7 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RepresentationController;
 use App\Http\Controllers\ReservationController;
@@ -14,11 +15,12 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
+
 // Route vers la page d'accueil
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 // Page Home pour les utilisateurs authentifiés
-Route::get('/home', [HomeController::class, 'home'])->middleware(['auth'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->middleware(['auth'])->name('home.index');
 
 // Routes Artist
 Route::get('/artist', [ArtistController::class, 'index'])->name('artist.index');
@@ -78,6 +80,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/reservation/book', [ReservationController::class, 'book'])->name('reservation.book');
     Route::delete('/reservation/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
 });
+
+//Route stripe
+Route::post('/create-checkout-session', [PaymentController::class, 'createCheckoutSession'])->name('payment.create');
+Route::get('/payment-success', [PaymentController::class, 'success'])->name('payment.success');
+Route::get('/payment-cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
 
 

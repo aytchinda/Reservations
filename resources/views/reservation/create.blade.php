@@ -4,7 +4,7 @@
     <div class="container my-5">
         <h1 class="mb-4 text-center">Créer une Réservation</h1>
 
-        <form action="{{ route('reservation.book') }}" method="POST">
+        <form id="reservation-form" action="{{ route('reservation.book') }}" method="POST">
             @csrf
 
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -47,7 +47,7 @@
 
                     <!-- Affichage du prix du spectacle -->
                     <div class="form-group mb-4">
-                        <label for="price" class="form-label">Prix</label>
+                        <label for="price" class="form-label">Prix unitaire</label>
                         <input type="text" id="price" class="form-control form-control-lg" readonly>
                     </div>
                 </div>
@@ -58,8 +58,14 @@
                 <input type="number" name="seats" id="seats" class="form-control form-control-lg" min="1" required>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-lg w-100">
-                <i class="fas fa-ticket-alt"></i> Réserver
+            <!-- Affichage du prix total -->
+            <div class="form-group mb-4">
+                <label for="total-price" class="form-label">Prix total</label>
+                <input type="text" id="total-price" class="form-control form-control-lg" readonly>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-lg w-100" id="pay-button">
+                <i class="fas fa-ticket-alt"></i> Payer
             </button>
         </form>
     </div>
@@ -80,6 +86,27 @@
             } else {
                 imageElement.style.display = 'none';
             }
+
+            // Mettre à jour le prix total au cas où le nombre de places est déjà saisi
+            updateTotalPrice();
+        });
+
+        document.getElementById('seats').addEventListener('input', function() {
+            updateTotalPrice();
+        });
+
+        function updateTotalPrice() {
+            var price = parseFloat(document.getElementById('price').value) || 0;
+            var seats = parseInt(document.getElementById('seats').value) || 0;
+            var totalPrice = price * seats;
+            document.getElementById('total-price').value = totalPrice.toFixed(2) + ' €';
+        }
+
+        document.getElementById('pay-button').addEventListener('click', function() {
+            var form = document.getElementById('reservation-form');
+            form.action = "{{ route('reservation.book') }}";
+            form.method = "POST";
+            form.submit();
         });
     </script>
 @endsection

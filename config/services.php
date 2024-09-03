@@ -24,6 +24,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'stripe' => [
+        'secret' => env('STRIPE_SECRET'), // Utilisation de la variable d'environnement
+    ],
+
+
     'resend' => [
         'key' => env('RESEND_KEY'),
     ],

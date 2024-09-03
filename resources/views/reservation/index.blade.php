@@ -12,7 +12,7 @@
                 <th>ID</th>
                 <th>Nom de l'Utilisateur</th>
                 <th>Spectacle</th>
-                <th>Prix</th>
+                <th>Prix unitaire</th>
                 <th>Nombre de Places</th>
                 <th>Actions</th>
             </tr>

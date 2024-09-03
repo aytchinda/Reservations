@@ -19,7 +19,6 @@ class ReservationController extends Controller
         $reservations = Reservation::with('representation.show')
                         ->where('user_id', $user->id) // Filtrer par utilisateur connecté
                         ->get();
-        // dd($reservations); // Utilisez cette ligne pour déboguer
 
         return view('reservation.index', compact('reservations'));
     }
@@ -32,7 +31,6 @@ class ReservationController extends Controller
         // Retourner la vue avec les représentations disponibles
         return view('reservation.create', compact('representations'));
     }
-
 
     public function book(Request $request)
     {
@@ -48,12 +46,19 @@ class ReservationController extends Controller
         $representation = Representation::find($validated['representation_id']);
         $validated['show_id'] = $representation ? $representation->show_id : null;
 
+        // Calculer le prix total
+        $totalPrice = $representation->show->price * $validated['seats'];
+
+        // Créer la réservation
         $reservation = Reservation::create($validated);
 
-        return redirect()->route('reservation.index', $reservation->id)->with('success', 'Reservation booked successfully.');
+        // Afficher une vue avec un formulaire automatique pour soumettre les données à Stripe
+        return view('payment.redirect_to_stripe', [
+            'reservation_id' => $reservation->id,
+            'show_title' => $representation->show->title,
+            'total_price' => $totalPrice,
+        ]);
     }
-
-
 
 
     public function show($id)
@@ -70,8 +75,6 @@ class ReservationController extends Controller
             'user' => $user
         ]);
     }
-
-
 
     public function edit(Reservation $reservation)
     {
@@ -98,7 +101,6 @@ class ReservationController extends Controller
 
         return redirect()->route('reservation.index', $reservation->id)->with('success', 'Reservation updated successfully.');
     }
-
 
     public function destroy(Reservation $reservation)
     {

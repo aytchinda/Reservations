@@ -7,7 +7,8 @@
                 <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                     <!-- Nav brand -->
-                    <a href="{{ url('/') }}" class="nav-brand"><img src="{{ asset('img/core-img/logo.png') }}" alt="Logo"></a>
+                    <a href="{{ url('/') }}" class="nav-brand"><img src="{{ asset('img/core-img/logo.png') }}"
+                            alt="Logo"></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -26,7 +27,7 @@
                         <div class="classynav">
                             <ul>
                                 <li><a href="{{ url('/') }}">Home</a></li>
-                               
+
 
                                 <li><a href="{{ url('/contact') }}">Contact</a></li>
                             </ul>
@@ -38,12 +39,13 @@
                                     @auth
                                         <div class="login-register-btn mr-50">
                                             <span>Bienvenue, {{ Auth::user()->name }}</span>
-                                            <a href="{{ url('/home') }}">Home</a>
-                                            <a href="{{ route('logout') }}"
-                                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <a href="{{ url('/') }}">Home</a>
+                                             <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 Logout
                                             </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
