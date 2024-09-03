@@ -21,6 +21,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 // Page Home pour les utilisateurs authentifiés
 Route::get('/', [HomeController::class, 'index'])->middleware(['auth'])->name('home.index');
+Route::get('/search', [HomeController::class, 'search'])->name('home.search');
 
 // Routes Artist
 Route::get('/artist', [ArtistController::class, 'index'])->name('artist.index');
