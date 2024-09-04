@@ -17,10 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 
 // Route vers la page d'accueil
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+// Page d'accueil pour afficher la liste des shows (accessible à tout le monde)
+Route::get('/', [HomeController::class, 'homepage'])->name('home');
+Route::get('/', [HomeController::class, 'homepage'])->name('home.homepage');
 
-// Page Home pour les utilisateurs authentifiés
-Route::get('/', [HomeController::class, 'index'])->middleware(['auth'])->name('home.index');
+
+// Page réservée aux utilisateurs authentifiés (par exemple un dashboard)
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth'])->name('home.dashboard');
 Route::get('/search', [HomeController::class, 'search'])->name('home.search');
 
 // Routes Artist
