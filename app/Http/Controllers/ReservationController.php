@@ -33,32 +33,36 @@ class ReservationController extends Controller
     }
 
     public function book(Request $request)
-    {
-        $this->authorize('create', Reservation::class);
+{
+    $this->authorize('create', Reservation::class);
 
-        $validated = $request->validate([
-            'representation_id' => 'required|exists:representations,id',
-            'seats' => 'required|integer|min:1',
-        ]);
+    $validated = $request->validate([
+        'representation_id' => 'required|exists:representations,id',
+        'seats' => 'required|integer|min:1',
+    ]);
 
-        $validated['user_id'] = auth()->user()->id;
+    $validated['user_id'] = auth()->user()->id;
 
-        $representation = Representation::find($validated['representation_id']);
-        $validated['show_id'] = $representation ? $representation->show_id : null;
+    $representation = Representation::find($validated['representation_id']);
+    $validated['show_id'] = $representation ? $representation->show_id : null;
 
-        // Calculer le prix total
-        $totalPrice = $representation->show->price * $validated['seats'];
+    // Calculer le prix total
+    $totalPrice = $representation->show->price * $validated['seats'];
 
-        // Créer la réservation
-        $reservation = Reservation::create($validated);
+    // Créer la réservation
+    $reservation = Reservation::create($validated);
 
-        // Afficher une vue avec un formulaire automatique pour soumettre les données à Stripe
-        return view('payment.redirect_to_stripe', [
-            'reservation_id' => $reservation->id,
-            'show_title' => $representation->show->title,
-            'total_price' => $totalPrice,
-        ]);
-    }
+    // Si vous avez une logique de paiement ici, assurez-vous qu'elle est sécurisée
+    // Ex. : effectuer le paiement via Stripe et mettre à jour le statut de la réservation
+
+    // Afficher une vue avec un formulaire automatique pour soumettre les données à Stripe
+    return view('payment.redirect_to_stripe', [
+        'reservation_id' => $reservation->id,
+        'show_title' => $representation->show->title,
+        'total_price' => $totalPrice,
+    ]);
+}
+
 
 
     public function show($id)

@@ -72,7 +72,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
     Route::get('/reservation/create', [ReservationController::class, 'create'])->name('reservation.create');
     Route::get('/reservation/{reservation}', [ReservationController::class, 'show'])->name('reservation.show');
