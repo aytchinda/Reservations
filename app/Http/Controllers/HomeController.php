@@ -7,22 +7,20 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function homepage()
-    {
-        return view("home.homepage");
-    }
+  // Page publique ou d'accueil générale
+  public function homepage()
+  {
+      // Retourner la liste des shows pour tous les utilisateurs
+      $shows = Show::all();
+      return view('home.index', compact('shows'));
+  }
 
-    public function home()
-    {
-        return view("home.homepage");
-    }
-
-    public function index()
-    {
-        $shows = Show::all();
-        return view('home.index', compact('shows'));
-    }
-
+  // Méthode supplémentaire si tu as besoin d'une vue différente pour les utilisateurs authentifiés
+  public function dashboard()
+  {
+      // Ceci pourrait être une page spécifique pour les utilisateurs authentifiés
+      return view('home.dashboard');
+  }
     public function search(Request $request)
     {
         $query = Show::query();
